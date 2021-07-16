@@ -14,7 +14,7 @@ fn main() {
     let (tx, rx) = mpsc::channel::<String>();
 
     thread::spawn(move || loop {
-        let mut buff = vec![0, MSG_SIZE];
+        let mut buff = vec![0; MSG_SIZE];
         match client.read_exact(&mut buff) {
             Ok(_) => {
                 let msg = buff.into_iter().take_while(|&x| x != 0).collect::<Vec<_>>();
